@@ -1,30 +1,29 @@
-package net.unixcomp.suai.lab4.model;
+package net.unixcomp.suai.lab4.data;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "rents")
+@Table(name = "access")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Rent implements Serializable {
+public class Access implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "tax")
-    private Integer tax;
+    @Column(name = "days")
+    private Integer days;
 
     @ManyToOne
-    @JoinColumn(name="client_id", nullable=false)
-    private Client client;
+    @JoinColumn(name="person_id", nullable=false)
+    private Person person;
 
     @OneToOne
     @JoinColumn(name = "room_id", referencedColumnName = "id")

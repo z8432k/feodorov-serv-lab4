@@ -1,13 +1,14 @@
 import * as React from "react";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import {Button, ButtonGroup} from "@mui/material";
+import {Button, ButtonGroup, createTheme, ThemeProvider} from "@mui/material";
 import {useState} from "react";
 import Rooms from "./Rooms";
 import Clients from "./Clients";
 import Rents from "./Rents";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import {orange} from "@mui/material/colors";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -16,6 +17,11 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary
 }));
 
+const theme = createTheme({
+    status: {
+        danger: orange[500],
+    },
+});
 
 function renderPage(page) {
     switch (page) {
@@ -32,7 +38,14 @@ export default function RowAndColumnSpacing() {
     const [page, setPage] = useState('rooms');
 
     return (
-        <Box sx={{ width: "100%" }}>
+        <ThemeProvider theme={theme}>
+            <Box sx={{ flexGrow: 1 }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <Item>xs=8</Item>
+                    </Grid>
+                </Grid>
+            </Box>
             <Grid  container
                    direction="column"
                    justifyContent="flex-start"
@@ -51,6 +64,6 @@ export default function RowAndColumnSpacing() {
                     renderPage(page)
                 }
             </Grid>
-        </Box>
+        </ThemeProvider>
     );
 }

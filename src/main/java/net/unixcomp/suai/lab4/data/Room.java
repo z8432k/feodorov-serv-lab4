@@ -1,4 +1,4 @@
-package net.unixcomp.suai.lab4.model;
+package net.unixcomp.suai.lab4.data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -7,16 +7,15 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
-@Table(name = "clients")
+@Table(name = "rooms")
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class Client implements Serializable {
+public class Room implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,19 +24,19 @@ public class Client implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(mappedBy="client")
-    @JsonIgnore
-    private Set<Rent> rents;
-
-    @Column(name = "firstname")
+    @Column(name = "description")
     private String name;
+
+    @OneToOne(mappedBy = "room")
+    @JsonIgnore
+    private Access rent;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Client client = (Client) o;
-        return id != null && Objects.equals(id, client.id);
+        Room room = (Room) o;
+        return id != null && Objects.equals(id, room.id);
     }
 
     @Override

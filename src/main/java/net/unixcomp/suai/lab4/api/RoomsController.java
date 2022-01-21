@@ -1,8 +1,7 @@
-package net.unixcomp.suai.lab4.rest;
+package net.unixcomp.suai.lab4.api;
 
 import net.unixcomp.suai.lab4.dao.RoomsRepository;
-import net.unixcomp.suai.lab4.model.Client;
-import net.unixcomp.suai.lab4.model.Room;
+import net.unixcomp.suai.lab4.data.Room;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
