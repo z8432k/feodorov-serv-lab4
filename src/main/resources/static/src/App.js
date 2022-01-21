@@ -1,7 +1,8 @@
 import * as React from "react";
+import PropTypes from 'prop-types';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import {Button, ButtonGroup, createTheme, ThemeProvider} from "@mui/material";
+import {Button, ButtonGroup, createTheme, Tab, TabPanelUnstyled, Tabs, ThemeProvider, Typography} from "@mui/material";
 import {useState} from "react";
 import Rooms from "./Rooms";
 import Clients from "./Clients";
@@ -37,12 +38,31 @@ function renderPage(page) {
 export default function RowAndColumnSpacing() {
     const [page, setPage] = useState('rooms');
 
+
+    const handleChange = (event, newValue) => {
+        setPage(newValue);
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Item>xs=8</Item>
+                <Grid container spacing={2} justifyContent="center" marginTop={5}>
+                    <Grid item xs={8}>
+                        <Item>
+                            <Box sx={{ width: '100%' }}>
+                                <Tabs
+                                    value={page}
+                                    onChange={handleChange}
+                                    textColor="secondary"
+                                    indicatorColor="secondary"
+                                    aria-label="secondary tabs example"
+                                >
+                                    <Tab value="one" label="Item One" />
+                                    <Tab value="two" label="Item Two" />
+                                    <Tab value="three" label="Item Three" />
+                                </Tabs>
+                            </Box>
+                        </Item>
                     </Grid>
                 </Grid>
             </Box>

@@ -40,5 +40,8 @@
       "last 1 chrome version",
       "last 1 firefox version"
     ]
+  },
+  "devDependencies": {
+    "prop-types": "~15.8.1"
   }
 }
