@@ -1,4 +1,4 @@
-package net.unixcomp.suai.lab4.data;
+package com.example.lab4;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

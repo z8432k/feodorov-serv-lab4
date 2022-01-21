@@ -1,4 +1,4 @@
-package net.unixcomp.suai.lab4;
+package com.example.lab4;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

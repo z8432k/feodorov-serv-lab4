@@ -1,7 +1,5 @@
-package net.unixcomp.suai.lab4.api;
+package com.example.lab4;
 
-import net.unixcomp.suai.lab4.dao.PeopleRepository;
-import net.unixcomp.suai.lab4.data.Person;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
