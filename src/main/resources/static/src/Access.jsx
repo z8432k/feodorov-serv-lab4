@@ -6,6 +6,7 @@ import {useEffect, useRef, useState} from "react";
 import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
 import {SimpleDialog} from "./Dialog";
+import Actions from "./Actions";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -74,7 +75,7 @@ export default function Access() {
             width: 150,
             editable: false,
             sortable: false,
-            renderCell: (data) => (<Button onClick={(e) => onDelClick(data, e)} variant="contained" color="error">del</Button>)
+            renderCell: (data) => (<Actions onClick={(e) => onDelClick(data, e)}/>)
         }
     ];
 

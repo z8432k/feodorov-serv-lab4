@@ -6,6 +6,7 @@ import {useEffect, useRef, useState} from "react";
 import {DataGrid} from "@mui/x-data-grid";
 import {Button, TextField} from "@mui/material";
 import {SimpleDialog} from "./Dialog";
+import Actions from "./Actions";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -47,7 +48,7 @@ export default function Clients() {
             width: 200,
             editable: false,
             sortable: false,
-            renderCell: (data) => (<Button onClick={(e) => onDelClick(data, e)} variant="contained" color="error">del</Button>)
+            renderCell: (data) => (<Actions onClick={(e) => onDelClick(data, e)}/>)
         }
     ];
 

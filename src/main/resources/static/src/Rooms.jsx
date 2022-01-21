@@ -6,6 +6,7 @@ import {useEffect, useRef, useState} from "react";
 import {Button, TextField} from "@mui/material";
 import {DataGrid} from "@mui/x-data-grid";
 import {SimpleDialog} from "./Dialog";
+import Actions from "./Actions";
 
 const Item = styled(Paper)(({ theme }) => ({
     ...theme.typography.body2,
@@ -27,12 +28,11 @@ export default function Rooms() {
     useEffect(loadRooms, []);
 
     function onDelClick(data) {
-        console.log(data);
         fetch("http://localhost:3000/rooms/" + data.row.id, {
             method: 'DELETE',
         })
         .then(loadRooms);
-    };
+    }
 
     const columns = [
         {
@@ -48,7 +48,7 @@ export default function Rooms() {
             width: 200,
             editable: false,
             sortable: false,
-            renderCell: (data) => (<Button onClick={(e) => onDelClick(data, e)} variant="contained" color="error">del</Button>)
+            renderCell: (data) => (<Actions onClick={(e) => onDelClick(data, e)}/>)
         }
     ];
 
