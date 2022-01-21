@@ -39,7 +39,7 @@ export default function RowAndColumnSpacing() {
     const [page, setPage] = useState('rooms');
 
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (event, value) => {
         setPage(newValue);
     };
 
@@ -54,12 +54,11 @@ export default function RowAndColumnSpacing() {
                                     value={page}
                                     onChange={handleChange}
                                     textColor="secondary"
-                                    indicatorColor="secondary"
-                                    aria-label="secondary tabs example"
-                                >
-                                    <Tab value="one" label="Item One" />
-                                    <Tab value="two" label="Item Two" />
-                                    <Tab value="three" label="Item Three" />
+                                    indicatorColor="secondary">
+
+                                    <Tab value="rooms" label="Rooms" />
+                                    <Tab value="people" label="People" />
+                                    <Tab value="grants" label="Grants" />
                                 </Tabs>
                             </Box>
                         </Item>
