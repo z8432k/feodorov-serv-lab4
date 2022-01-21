@@ -25,7 +25,7 @@ public class Access implements Serializable {
     @JoinColumn(name="person_id", nullable=false)
     private Person person;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     private Room room;
 }

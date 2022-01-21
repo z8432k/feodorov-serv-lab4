@@ -2,11 +2,21 @@ import * as React from "react";
 import PropTypes from 'prop-types';
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import {Button, ButtonGroup, createTheme, Tab, TabPanelUnstyled, Tabs, ThemeProvider, Typography} from "@mui/material";
+import {
+    Button,
+    ButtonGroup,
+    createTheme,
+    Tab,
+    TabPanelUnstyled,
+    Tabs,
+    TabsListUnstyled,
+    ThemeProvider,
+    Typography
+} from "@mui/material";
 import {useState} from "react";
 import Rooms from "./Rooms";
 import Clients from "./Clients";
-import Rents from "./Rents";
+import Access from "./Access";
 import {styled} from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import {orange} from "@mui/material/colors";
@@ -24,65 +34,70 @@ const theme = createTheme({
     },
 });
 
-function renderPage(page) {
-    switch (page) {
-        case 'rooms':
-            return (<Rooms />);
-        case 'clients':
-            return (<Clients />);
-        default:
-            return (<Rents />)
-    }
+function TabPanel(props) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
+
+TabPanel.propTypes = {
+    children: PropTypes.node,
+    index: PropTypes.number.isRequired,
+    value: PropTypes.number.isRequired,
+};
 
 export default function RowAndColumnSpacing() {
     const [page, setPage] = useState('rooms');
 
-
-    const handleChange = (event, value) => {
-        setPage(newValue);
-    };
+    function handleChange(event, value) {
+        setPage(value);
+    }
 
     return (
         <ThemeProvider theme={theme}>
             <Box sx={{ flexGrow: 1 }}>
                 <Grid container spacing={2} justifyContent="center" marginTop={5}>
-                    <Grid item xs={8}>
+                    <Grid item xs={10}>
                         <Item>
                             <Box sx={{ width: '100%' }}>
                                 <Tabs
                                     value={page}
                                     onChange={handleChange}
                                     textColor="secondary"
-                                    indicatorColor="secondary">
+                                    indicatorColor="primary">
 
                                     <Tab value="rooms" label="Rooms" />
                                     <Tab value="people" label="People" />
                                     <Tab value="grants" label="Grants" />
                                 </Tabs>
                             </Box>
+                            <TabPanel value={page} index={'rooms'}>
+                                <Rooms />
+                            </TabPanel>
+                            <TabPanel value={page} index={'people'}>
+                                <Clients />
+                            </TabPanel>
+                            <TabPanel value={page} index={'grants'}>
+                                <Access />
+                            </TabPanel>
                         </Item>
                     </Grid>
                 </Grid>
             </Box>
-            <Grid  container
-                   direction="column"
-                   justifyContent="flex-start"
-                   alignItems="center"
-                   spacing={2}>
-                <Grid item xs={12}>
-                    <Item>
-                        <ButtonGroup variant="contained">
-                            <Button onClick={() => setPage("rooms")}>Rooms</Button>
-                            <Button onClick={() => setPage("clients")}>Clients</Button>
-                            <Button onClick={() => setPage("rent")}>Rent</Button>
-                        </ButtonGroup>
-                    </Item>
-                </Grid>
-                {
-                    renderPage(page)
-                }
-            </Grid>
         </ThemeProvider>
     );
 }

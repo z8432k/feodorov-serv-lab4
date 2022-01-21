@@ -7,6 +7,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "rooms")
@@ -27,9 +28,9 @@ public class Room implements Serializable {
     @Column(name = "description")
     private String name;
 
-    @OneToOne(mappedBy = "room")
+    @OneToMany(mappedBy = "room")
     @JsonIgnore
-    private Access rent;
+    private Set<Access> rent;
 
     @Override
     public boolean equals(Object o) {
